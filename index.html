@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rancangan Pabrik Amonia 1000 MTPD</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏭</text></svg>">
+</head>
+<body>
+    <!-- Header dengan warna kontras -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-title-container">
+                <h1 class="title"><i class="fas fa-industry"></i> RANCANGAN PABRIK AMONIA</h1>
+                <h2 class="subtitle">KAPASITAS 1000 METRIK TON PER HARI</h2>
+            </div>
+            
+            <div class="production-target">
+                <div class="target-box">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>TARGET PRODUKSI</h3>
+                    <p class="big-number">1.000 <span class="unit">ton/hari</span></p>
+                    <p class="detail">Amonia Cair (99,5% NH₃)</p>
+                </div>
+                <div class="target-box">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>KAPASITAS TAHUNAN</h3>
+                    <p class="big-number">330.000 <span class="unit">ton/tahun</span></p>
+                    <p class="detail">330 hari operasional</p>
+                </div>
+                <div class="target-box">
+                    <i class="fas fa-gas-pump"></i>
+                    <h3>EFISIENSI RATA-RATA</h3>
+                    <p class="big-number" id="header-efficiency">85.2<span class="unit">%</span></p>
+                    <p class="detail">Berdasarkan pilihan mesin</p>
+                </div>
+                <div class="target-box">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h3>BIAYA BAHAN BAKU/HARI</h3>
+                    <p class="big-number" id="header-raw-cost">Rp 3,2<span class="unit">M</span></p>
+                    <p class="detail">Update real-time</p>
+                </div>
+            </div>
+            
+            <div class="last-update">
+                <p><i class="fas fa-sync-alt"></i> Data diperbarui otomatis saat pilihan mesin berubah</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation dengan Scroll Spy -->
+    <nav class="navigation" id="mainNav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#process1" class="nav-link active"><i class="fas fa-filter"></i> Desulfurisasi</a></li>
+                <li><a href="#process2" class="nav-link"><i class="fas fa-fire"></i> Steam Reforming</a></li>
+                <li><a href="#process3" class="nav-link"><i class="fas fa-exchange-alt"></i> Shift Conversion</a></li>
+                <li><a href="#process4" class="nav-link"><i class="fas fa-wind"></i> CO₂ Removal</a></li>
+                <li><a href="#process5" class="nav-link"><i class="fas fa-atom"></i> Sintesis</a></li>
+                <li><a href="#machine-summary" class="nav-link"><i class="fas fa-cogs"></i> Ringkasan Mesin</a></li>
+                <li><a href="#raw-material" class="nav-link"><i class="fas fa-calculator"></i> Bahan Baku</a></li>
+                <li><a href="#economics" class="nav-link"><i class="fas fa-chart-line"></i> Ekonomi</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Introduction -->
+        <section class="intro-section">
+            <h2><i class="fas fa-info-circle"></i> PENDAHULUAN</h2>
+            <p>Rancangan pabrik amonia ini menggunakan proses <strong>Haber-Bosch dengan Steam Reforming</strong> dari gas alam. Website ini memungkinkan analisis interaktif dengan <strong>perhitungan real-time</strong> berdasarkan pilihan mesin yang mempengaruhi efisiensi, kebutuhan bahan baku, dan biaya produksi.</p>
+            
+            <div class="instruction-box">
+                <h3><i class="fas fa-mouse-pointer"></i> CARA MENGGUNAKAN</h3>
+                <ol>
+                    <li>Pilih level mesin untuk setiap proses produksi (Basic/Standard/Premium)</li>
+                    <li>Lihat <strong>Ringkasan Mesin</strong> untuk total biaya dan efisiensi rata-rata</li>
+                    <li>Periksa <strong>Perhitungan Bahan Baku</strong> yang update otomatis berdasarkan efisiensi</li>
+                    <li>Analisis <strong>Ekonomi</strong> dengan data yang akurat</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Process 1: Desulfurization -->
+        <section class="process-section" id="process1">
+            <div class="process-header">
+                <div class="process-number">1</div>
+                <div class="process-title">
+                    <h2><i class="fas fa-filter"></i> DESULFURISASI</h2>
+                    <p>Penghilangan sulfur dari gas alam untuk melindungi katalis</p>
+                </div>
+            </div>
+            
+            <div class="process-content">
+                <!-- Reaction -->
+                <div class="reaction-box">
+                    <h3><i class="fas fa-flask"></i> REAKSI KIMIA</h3>
+                    <div class="chemical-equation">
+                        H₂S(g) + ZnO(s) → ZnS(s) + H₂O(g)
+                    </div>
+                    <p class="reaction-type"><strong>Jenis Reaksi:</strong> Irreversible</p>
+                </div>
+                
+                <!-- Conditions -->
+                <div class="conditions-box">
+                    <h3><i class="fas fa-sliders-h"></i> KONDISI OPERASI</h3>
+                    <div class="conditions-grid">
+                        <div class="condition-item">
+                            <div class="condition-label">Suhu</div>
+                            <div class="condition-value">350°C</div>
+                        </div>
+                        <div class="condition-item">
+                            <div class="condition-label">Tekanan</div>
+                            <div class="condition-value">25 bar</div>
+                        </div>
+                        <div class="condition-item">
+                            <div class="condition-label">Katalis</div>
+                            <div class="condition-value">ZnO pellets</div>
+                        </div>
+                        <div class="condition-item">
+                            <div class="condition-label">Konversi</div>
+                            <div class="condition-value">>99%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stoichiometry -->
+                <div class="stoich-box">
+                    <h3><i class="fas fa-balance-scale"></i> STOIKIOMETRI PER HARI</h3>
+                    <p><strong>Basis:</strong> Untuk produksi 1.000 ton NH₃/hari</p>
+                    
+                    <div class="stoich-grid">
+                        <div class="stoich-input">
+                            <h4><i class="fas fa-arrow-right"></i> INPUT (REAKTAN)</h4>
+                            <div class="stoich-item">
+                                <div class="chem-name">H₂S</div>
+                                <div class="chem-details">
+                                    <span class="mole">1.509 mol</span>
+                                    <span class="mass">≈ 51,5 kg</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">ZnO</div>
+                                <div class="chem-details">
+                                    <span class="mole">1.811 mol</span>
+                                    <span class="mass">≈ 147,4 kg</span>
+                                </div>
+                            </div>
+                            <div class="stoich-total">
+                                <strong>Total Input:</strong> ≈ 198,9 kg
+                            </div>
+                        </div>
+                        
+                        <div class="stoich-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="stoich-output">
+                            <h4><i class="fas fa-arrow-right"></i> OUTPUT (PRODUK)</h4>
+                            <div class="stoich-item">
+                                <div class="chem-name">ZnS</div>
+                                <div class="chem-details">
+                                    <span class="mole">1.811 mol</span>
+                                    <span class="mass">≈ 220,8 kg</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">H₂O</div>
+                                <div class="chem-details">
+                                    <span class="mole">1.509 mol</span>
+                                    <span class="mass">≈ 27,2 kg</span>
+                                </div>
+                            </div>
+                            <div class="stoich-total">
+                                <strong>Total Output:</strong> ≈ 248,0 kg
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stoich-note">
+                        <p><i class="fas fa-info-circle"></i> <strong>Catatan:</strong> Berdasarkan kandungan sulfur 50 ppm dalam gas alam. Massa dihitung dari massa molar: H₂S=34 g/mol, ZnO=81 g/mol, ZnS=97 g/mol, H₂O=18 g/mol.</p>
+                    </div>
+                </div>
+                
+                <!-- Machine Selection -->
+                <div class="machine-box">
+                    <h3><i class="fas fa-cogs"></i> PILIHAN MESIN</h3>
+                    <div class="machine-selector">
+                        <label for="machine1">Pilih Level Mesin:</label>
+                        <select id="machine1" onchange="updateMachine(1); updateAllCalculations();">
+                            <option value="basic">Basic (Murah, Efisiensi 85%)</option>
+                            <option value="standard" selected>Standard (Rekomendasi, Efisiensi 92%)</option>
+                            <option value="premium">Premium (Mahal, Efisiensi 98%)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="machine-details">
+                        <h4 id="machine1-name">Desulfurizer Standard</h4>
+                        <div class="machine-stats">
+                            <div class="stat">
+                                <div class="stat-label">Harga</div>
+                                <div class="stat-value" id="machine1-price">Rp 3,8 Miliar</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Efisiensi</div>
+                                <div class="stat-value" id="machine1-efficiency">92%</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Yield</div>
+                                <div class="stat-value" id="machine1-yield">99%</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Kebutuhan ZnO</div>
+                                <div class="stat-value" id="machine1-znoneed">147,4 kg/hari</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Notes -->
+                <div class="notes-box">
+                    <h3><i class="fas fa-sticky-note"></i> CATATAN PENTING</h3>
+                    <p>• Sulfur harus dihilangkan sepenuhnya karena akan meracuni katalis nikel pada tahap reforming.</p>
+                    <p>• ZnO dapat diregenerasi dengan oksidasi: 2ZnS + 3O₂ → 2ZnO + 2SO₂</p>
+                    <p>• ZnS hasil samping dapat dijual ke industri pigmen atau elektronik.</p>
+                    <p>• Efisiensi mesin mempengaruhi kebutuhan ZnO: semakin rendah efisiensi, semakin banyak ZnO yang dibutuhkan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process 2: Steam Reforming -->
+        <section class="process-section" id="process2">
+            <div class="process-header">
+                <div class="process-number">2</div>
+                <div class="process-title">
+                    <h2><i class="fas fa-fire"></i> STEAM REFORMING</h2>
+                    <p>Konversi metana menjadi syngas (H₂ + CO)</p>
+                </div>
+            </div>
+            
+            <div class="process-content">
+                <!-- Reaction -->
+                <div class="reaction-box">
+                    <h3><i class="fas fa-flask"></i> REAKSI KIMIA</h3>
+                    <div class="chemical-equation">
+                        CH₄(g) + H₂O(g) ⇌ CO(g) + 3H₂(g)  ΔH = +206 kJ/mol
+                    </div>
+                    <p class="reaction-type"><strong>Jenis Reaksi:</strong> Reversible, Endotermik</p>
+                </div>
+                
+                <!-- Conditions -->
+                <div class="conditions-box">
+                    <h3><i class="fas fa-sliders-h"></i> KONDISI OPERASI</h3>
+                    <div class="conditions-grid">
+                        <div class="condition-item">
+                            <div class="condition-label">Suhu</div>
+                            <div class="condition-value">850°C</div>
+                        </div>
+                        <div class="condition-item">
+                            <div class="condition-label">Tekanan</div>
+                            <div class="condition-value">30 bar</div>
+                        </div>
+                        <div class="condition-item">
+                            <div class="condition-label">Katalis</div>
+                            <div class="condition-value">Ni/Al₂O₃</div>
+                        </div>
+                        <div class="condition-item">
+                            <div class="condition-label">Konversi CH₄</div>
+                            <div class="condition-value">~70% per pass</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stoichiometry -->
+                <div class="stoich-box">
+                    <h3><i class="fas fa-balance-scale"></i> STOIKIOMETRI PER HARI</h3>
+                    <p><strong>Basis:</strong> Untuk produksi 1.000 ton NH₃/hari (teoritis)</p>
+                    
+                    <div class="stoich-grid">
+                        <div class="stoich-input">
+                            <h4><i class="fas fa-arrow-right"></i> INPUT (REAKTAN)</h4>
+                            <div class="stoich-item">
+                                <div class="chem-name">CH₄ (gas alam)</div>
+                                <div class="chem-details">
+                                    <span class="mole">28.676.471 mol</span>
+                                    <span class="mass">≈ 458.800 kg</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">H₂O (steam)</div>
+                                <div class="chem-details">
+                                    <span class="mole">57.352.942 mol</span>
+                                    <span class="mass">≈ 1.032.353 kg</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">CH₄ (fuel)</div>
+                                <div class="chem-details">
+                                    <span class="mole">8.603.000 mol</span>
+                                    <span class="mass">≈ 137.648 kg</span>
+                                </div>
+                            </div>
+                            <div class="stoich-total">
+                                <strong>Total Input:</strong> ≈ 1.628.801 kg
+                            </div>
+                        </div>
+                        
+                        <div class="stoich-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="stoich-output">
+                            <h4><i class="fas fa-arrow-right"></i> OUTPUT (PRODUK)</h4>
+                            <div class="stoich-item">
+                                <div class="chem-name">Syngas (H₂ + CO)</div>
+                                <div class="chem-details">
+                                    <span class="mole">114.705.884 mol</span>
+                                    <span class="mass">≈ 231.200 kg H₂ + 802.900 kg CO</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">CO₂ (dari shift)</div>
+                                <div class="chem-details">
+                                    <span class="mole">5.735.294 mol</span>
+                                    <span class="mass">≈ 252.400 kg</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">CH₄ unconverted</div>
+                                <div class="chem-details">
+                                    <span class="mole">4.301.500 mol</span>
+                                    <span class="mass">≈ 68.824 kg</span>
+                                </div>
+                            </div>
+                            <div class="stoich-total">
+                                <strong>Total Output:</strong> ≈ 1.355.324 kg
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stoich-note">
+                        <p><i class="fas fa-info-circle"></i> <strong>Catatan:</strong> Rasio steam-to-carbon optimal 3:1. Sekitar 30% gas alam digunakan sebagai fuel untuk furnace. Massa molar: CH₄=16 g/mol, H₂O=18 g/mol, H₂=2 g/mol, CO=28 g/mol, CO₂=44 g/mol.</p>
+                    </div>
+                </div>
+                
+                <!-- Machine Selection -->
+                <div class="machine-box">
+                    <h3><i class="fas fa-cogs"></i> PILIHAN MESIN</h3>
+                    <div class="machine-selector">
+                        <label for="machine2">Pilih Level Mesin:</label>
+                        <select id="machine2" onchange="updateMachine(2); updateAllCalculations();">
+                            <option value="basic">Basic (Murah, Efisiensi 80%)</option>
+                            <option value="standard" selected>Standard (Rekomendasi, Efisiensi 88%)</option>
+                            <option value="premium">Premium (Mahal, Efisiensi 95%)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="machine-details">
+                        <h4 id="machine2-name">Steam Reformer Furnace Standard</h4>
+                        <div class="machine-stats">
+                            <div class="stat">
+                                <div class="stat-label">Harga</div>
+                                <div class="stat-value" id="machine2-price">Rp 136 Miliar</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Efisiensi</div>
+                                <div class="stat-value" id="machine2-efficiency">88%</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Yield</div>
+                                <div class="stat-value" id="machine2-yield">92%</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Kebutuhan CH₄</div>
+                                <div class="stat-value" id="machine2-ch4need">458.800 kg/hari</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Notes -->
+                <div class="notes-box">
+                    <h3><i class="fas fa-sticky-note"></i> CATATAN PENTING</h3>
+                    <p>• Reaksi endotermik membutuhkan panas tinggi dari pembakaran gas alam.</p>
+                    <p>• Sekitar 30% gas alam digunakan sebagai fuel untuk furnace.</p>
+                    <p>• Efisiensi mesin mempengaruhi konsumsi gas alam: efisiensi rendah = lebih banyak gas alam dibutuhkan.</p>
+                    <p>• Steam reforming adalah tahap paling intensif energi dalam proses amonia.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process 3: Shift Conversion -->
+        <section class="process-section" id="process3">
+            <div class="process-header">
+                <div class="process-number">3</div>
+                <div class="process-title">
+                    <h2><i class="fas fa-exchange-alt"></i> SHIFT CONVERSION</h2>
+                    <p>Konversi CO menjadi CO₂ untuk lebih banyak H₂</p>
+                </div>
+            </div>
+            
+            <div class="process-content">
+                <!-- Reaction -->
+                <div class="reaction-box">
+                    <h3><i class="fas fa-flask"></i> REAKSI KIMIA</h3>
+                    <div class="chemical-equation">
+                        CO(g) + H₂O(g) ⇌ CO₂(g) + H₂(g)  ΔH = -41 kJ/mol
+                    </div>
+                    <p class="reaction-type"><strong>Jenis Reaksi:</strong> Reversible, Eksotermik</p>
+                </div>
+                
+                <!-- Conditions -->
+                <div class="conditions-box">
+                    <h3><i class="fas fa-sliders-h"></i> KONDISI OPERASI</h3>
+                    <div class="conditions-grid">
+                        <div class="condition-item">
+                            <div class="condition-label">Suhu</div>
+                            <div class="condition-value">300°C</div>
+                        </div>
+                        <div class="condition-item">
+                            <div class="condition-label">Tekanan</div>
+                            <div class="condition-value">28 bar</div>
+                        </div>
+                        <div class="condition-item">
+                            <div class="condition-label">Katalis</div>
+                            <div class="condition-value">Fe₃O₄/Cr₂O₃</div>
+                        </div>
+                        <div class="condition-item">
+                            <div class="condition-label">Konversi CO</div>
+                            <div class="condition-value">>90%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stoichiometry -->
+                <div class="stoich-box">
+                    <h3><i class="fas fa-balance-scale"></i> STOIKIOMETRI PER HARI</h3>
+                    <p><strong>Basis:</strong> Untuk produksi 1.000 ton NH₃/hari</p>
+                    
+                    <div class="stoich-grid">
+                        <div class="stoich-input">
+                            <h4><i class="fas fa-arrow-right"></i> INPUT (REAKTAN)</h4>
+                            <div class="stoich-item">
+                                <div class="chem-name">CO dari reforming</div>
+                                <div class="chem-details">
+                                    <span class="mole">28.676.471 mol</span>
+                                    <span class="mass">≈ 802.900 kg</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">H₂O tambahan</div>
+                                <div class="chem-details">
+                                    <span class="mole">28.676.471 mol</span>
+                                    <span class="mass">≈ 516.176 kg</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">H₂ dari reforming</div>
+                                <div class="chem-details">
+                                    <span class="mole">86.029.413 mol</span>
+                                    <span class="mass">≈ 172.059 kg</span>
+                                </div>
+                            </div>
+                            <div class="stoich-total">
+                                <strong>Total Input:</strong> ≈ 1.491.135 kg
+                            </div>
+                        </div>
+                        
+                        <div class="stoich-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="stoich-output">
+                            <h4><i class="fas fa-arrow-right"></i> OUTPUT (PRODUK)</h4>
+                            <div class="stoich-item">
+                                <div class="chem-name">CO₂</div>
+                                <div class="chem-details">
+                                    <span class="mole">28.676.471 mol</span>
+                                    <span class="mass">≈ 1.261.765 kg</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">H₂ (total)</div>
+                                <div class="chem-details">
+                                    <span class="mole">114.705.884 mol</span>
+                                    <span class="mass">≈ 229.412 kg</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">CO unconverted</div>
+                                <div class="chem-details">
+                                    <span class="mole">1.433.824 mol</span>
+                                    <span class="mass">≈ 40.147 kg</span>
+                                </div>
+                            </div>
+                            <div class="stoich-total">
+                                <strong>Total Output:</strong> ≈ 1.531.324 kg
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stoich-note">
+                        <p><i class="fas fa-info-circle"></i> <strong>Catatan:</strong> Dua tahap shift: high temperature (300-450°C) dan low temperature (200-250°C). Reaksi eksotermik, perlu pendinginan untuk menggeser kesetimbangan. CO₂ yang dihasilkan akan dihilangkan pada tahap berikutnya.</p>
+                    </div>
+                </div>
+                
+                <!-- Machine Selection -->
+                <div class="machine-box">
+                    <h3><i class="fas fa-cogs"></i> PILIHAN MESIN</h3>
+                    <div class="machine-selector">
+                        <label for="machine3">Pilih Level Mesin:</label>
+                        <select id="machine3" onchange="updateMachine(3); updateAllCalculations();">
+                            <option value="basic">Basic (Murah, Efisiensi 85%)</option>
+                            <option value="standard" selected>Standard (Rekomendasi, Efisiensi 92%)</option>
+                            <option value="premium">Premium (Mahal, Efisiensi 97%)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="machine-details">
+                        <h4 id="machine3-name">Shift Reactor Standard</h4>
+                        <div class="machine-stats">
+                            <div class="stat">
+                                <div class="stat-label">Harga</div>
+                                <div class="stat-value" id="machine3-price">Rp 48 Miliar</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Efisiensi</div>
+                                <div class="stat-value" id="machine3-efficiency">92%</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Yield</div>
+                                <div class="stat-value" id="machine3-yield">95%</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Konsumsi Energi</div>
+                                <div class="stat-value" id="machine3-energy">15.000 kWh/hari</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Notes -->
+                <div class="notes-box">
+                    <h3><i class="fas fa-sticky-note"></i> CATATAN PENTING</h3>
+                    <p>• Reaksi eksotermik, perlu pendinginan untuk menggeser kesetimbangan ke kanan.</p>
+                    <p>• CO₂ yang dihasilkan akan dihilangkan pada tahap berikutnya.</p>
+                    <p>• Efisiensi mesin mempengaruhi konversi CO: efisiensi rendah = lebih banyak CO tersisa = lebih sedikit H₂ yang dihasilkan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process 4: CO₂ Removal -->
+        <section class="process-section" id="process4">
+            <div class="process-header">
+                <div class="process-number">4</div>
+                <div class="process-title">
+                    <h2><i class="fas fa-wind"></i> CO₂ REMOVAL</h2>
+                    <p>Penghilangan CO₂ untuk memurnikan syngas</p>
+                </div>
+            </div>
+            
+            <div class="process-content">
+                <!-- Reaction -->
+                <div class="reaction-box">
+                    <h3><i class="fas fa-flask"></i> REAKSI KIMIA</h3>
+                    <div class="chemical-equation">
+                        CO₂ + MEA → CO₂-MEA Complex (Absorption)<br>
+                        CO₂-MEA Complex → CO₂ + MEA (Regeneration)
+                    </div>
+                    <p class="reaction-type"><strong>Jenis Reaksi:</strong> Reversible, Absorpsi-Kimia</p>
+                </div>
+                
+                <!-- Conditions -->
+                <div class="conditions-box">
+                    <h3><i class="fas fa-sliders-h"></i> KONDISI OPERASI</h3>
+                    <div class="conditions-grid">
+                        <div class="condition-item">
+                            <div class="condition-label">Suhu Absorpsi</div>
+                            <div class="condition-value">50°C</div>
+                        </div>
+                        <div class="condition-item">
+                            <div class="condition-label">Suhu Regenerasi</div>
+                            <div class="condition-value">120°C</div>
+                        </div>
+                        <div class="condition-item">
+                            <div class="condition-label">Tekanan</div>
+                            <div class="condition-value">27 bar</div>
+                        </div>
+                        <div class="condition-item">
+                            <div class="condition-label">Absorben</div>
+                            <div class="condition-value">MEA 30%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stoichiometry -->
+                <div class="stoich-box">
+                    <h3><i class="fas fa-balance-scale"></i> STOIKIOMETRI PER HARI</h3>
+                    <p><strong>Basis:</strong> Untuk produksi 1.000 ton NH₃/hari</p>
+                    
+                    <div class="stoich-grid">
+                        <div class="stoich-input">
+                            <h4><i class="fas fa-arrow-right"></i> INPUT (REAKTAN)</h4>
+                            <div class="stoich-item">
+                                <div class="chem-name">Syngas (H₂ + CO + CO₂)</div>
+                                <div class="chem-details">
+                                    <span class="mole">114.705.884 mol</span>
+                                    <span class="mass">≈ 229.412 kg H₂ + 40.147 kg CO + 1.261.765 kg CO₂</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">MEA Solution (30%)</div>
+                                <div class="chem-details">
+                                    <span class="mole">34.411.765 mol</span>
+                                    <span class="mass">≈ 5.000 m³ larutan</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">Energi Regenerasi</div>
+                                <div class="chem-details">
+                                    <span class="mole">-</span>
+                                    <span class="mass">≈ 25.000 kWh</span>
+                                </div>
+                            </div>
+                            <div class="stoich-total">
+                                <strong>Total Input:</strong> ≈ 1.536.324 kg + 25 MWh
+                            </div>
+                        </div>
+                        
+                        <div class="stoich-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="stoich-output">
+                            <h4><i class="fas fa-arrow-right"></i> OUTPUT (PRODUK)</h4>
+                            <div class="stoich-item">
+                                <div class="chem-name">Pure Syngas (H₂)</div>
+                                <div class="chem-details">
+                                    <span class="mole">80.294.119 mol</span>
+                                    <span class="mass">≈ 229.412 kg H₂</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">CO₂ Removal</div>
+                                <div class="chem-details">
+                                    <span class="mole">34.411.765 mol</span>
+                                    <span class="mass">≈ 1.514.117 kg (99,5% purity)</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">MEA Solution (regenerated)</div>
+                                <div class="chem-details">
+                                    <span class="mole">34.411.765 mol</span>
+                                    <span class="mass">≈ 5.000 m³ (siklus)</span>
+                                </div>
+                            </div>
+                            <div class="stoich-total">
+                                <strong>Total Output:</strong> ≈ 1.743.529 kg
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stoich-note">
+                        <p><i class="fas fa-info-circle"></i> <strong>Catatan:</strong> CO₂ harus dihilangkan karena akan meracuni katalis sintesis amonia. Proses amine scrubbing membutuhkan energi tinggi untuk regenerasi. CO₂ yang ditangkap dapat dijual ke industri makanan atau untuk EOR.</p>
+                    </div>
+                </div>
+                
+                <!-- Machine Selection -->
+                <div class="machine-box">
+                    <h3><i class="fas fa-cogs"></i> PILIHAN MESIN</h3>
+                    <div class="machine-selector">
+                        <label for="machine4">Pilih Level Mesin:</label>
+                        <select id="machine4" onchange="updateMachine(4); updateAllCalculations();">
+                            <option value="basic">Basic (Murah, Efisiensi 90%)</option>
+                            <option value="standard" selected>Standard (Rekomendasi, Efisiensi 96%)</option>
+                            <option value="premium">Premium (Mahal, Efisiensi 99%)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="machine-details">
+                        <h4 id="machine4-name">CO₂ Removal Unit Standard</h4>
+                        <div class="machine-stats">
+                            <div class="stat">
+                                <div class="stat-label">Harga</div>
+                                <div class="stat-value" id="machine4-price">Rp 85 Miliar</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Efisiensi</div>
+                                <div class="stat-value" id="machine4-efficiency">96%</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Yield</div>
+                                <div class="stat-value" id="machine4-yield">98%</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Konsumsi Listrik</div>
+                                <div class="stat-value" id="machine4-energy">25.000 kWh/hari</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Notes -->
+                <div class="notes-box">
+                    <h3><i class="fas fa-sticky-note"></i> CATATAN PENTING</h3>
+                    <p>• CO₂ harus dihilangkan karena akan meracuni katalis sintesis amonia.</p>
+                    <p>• CO₂ yang ditangkap dapat dijual ke industri makanan atau untuk EOR.</p>
+                    <p>• Efisiensi mesin mempengaruhi energi yang dibutuhkan: efisiensi rendah = lebih banyak energi untuk regenerasi.</p>
+                    <p>• Proses amine scrubbing membutuhkan energi tinggi untuk regenerasi.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process 5: Ammonia Synthesis -->
+        <section class="process-section" id="process5">
+            <div class="process-header">
+                <div class="process-number">5</div>
+                <div class="process-title">
+                    <h2><i class="fas fa-atom"></i> SINTESIS AMONIA (HABER-BOSCH)</h2>
+                    <p>Reaksi N₂ dan H₂ membentuk NH₃</p>
+                </div>
+            </div>
+            
+            <div class="process-content">
+                <!-- Reaction -->
+                <div class="reaction-box">
+                    <h3><i class="fas fa-flask"></i> REAKSI KIMIA</h3>
+                    <div class="chemical-equation">
+                        N₂(g) + 3H₂(g) ⇌ 2NH₃(g)  ΔH = -92 kJ/mol
+                    </div>
+                    <p class="reaction-type"><strong>Jenis Reaksi:</strong> Reversible, Eksotermik</p>
+                </div>
+                
+                <!-- Conditions -->
+                <div class="conditions-box">
+                    <h3><i class="fas fa-sliders-h"></i> KONDISI OPERASI</h3>
+                    <div class="conditions-grid">
+                        <div class="condition-item">
+                            <div class="condition-label">Suhu</div>
+                            <div class="condition-value">450°C</div>
+                        </div>
+                        <div class="condition-item">
+                            <div class="condition-label">Tekanan</div>
+                            <div class="condition-value">200 bar</div>
+                        </div>
+                        <div class="condition-item">
+                            <div class="condition-label">Katalis</div>
+                            <div class="condition-value">Fe₃O₄/K₂O/Al₂O₃</div>
+                        </div>
+                        <div class="condition-item">
+                            <div class="condition-label">Konversi per Pass</div>
+                            <div class="condition-value">15-25%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stoichiometry -->
+                <div class="stoich-box">
+                    <h3><i class="fas fa-balance-scale"></i> STOIKIOMETRI PER HARI</h3>
+                    <p><strong>Basis:</strong> Untuk produksi 1.000 ton NH₃/hari</p>
+                    
+                    <div class="stoich-grid">
+                        <div class="stoich-input">
+                            <h4><i class="fas fa-arrow-right"></i> INPUT (REAKTAN)</h4>
+                            <div class="stoich-item">
+                                <div class="chem-name">H₂ murni</div>
+                                <div class="chem-details">
+                                    <span class="mole">88.235.294 mol</span>
+                                    <span class="mass">≈ 176.471 kg</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">N₂ dari udara</div>
+                                <div class="chem-details">
+                                    <span class="mole">29.411.765 mol</span>
+                                    <span class="mass">≈ 823.529 kg</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">Energi Kompresi</div>
+                                <div class="chem-details">
+                                    <span class="mole">-</span>
+                                    <span class="mass">≈ 45.000 kWh</span>
+                                </div>
+                            </div>
+                            <div class="stoich-total">
+                                <strong>Total Input:</strong> ≈ 1.000.000 kg + 45 MWh
+                            </div>
+                        </div>
+                        
+                        <div class="stoich-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="stoich-output">
+                            <h4><i class="fas fa-arrow-right"></i> OUTPUT (PRODUK)</h4>
+                            <div class="stoich-item">
+                                <div class="chem-name">NH₃ (amonia cair)</div>
+                                <div class="chem-details">
+                                    <span class="mole">58.823.529 mol</span>
+                                    <span class="mass">≈ 1.000.000 kg (1.000 ton)</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">Syngas unconverted</div>
+                                <div class="chem-details">
+                                    <span class="mole">29.411.765 mol</span>
+                                    <span class="mass">≈ 58.824 kg H₂ + 823.529 kg N₂ (recycle)</span>
+                                </div>
+                            </div>
+                            <div class="stoich-item">
+                                <div class="chem-name">Panas (waste heat)</div>
+                                <div class="chem-details">
+                                    <span class="mole">-</span>
+                                    <span class="mass">≈ 150 GJ/hari</span>
+                                </div>
+                            </div>
+                            <div class="stoich-total">
+                                <strong>Total Output:</strong> ≈ 1.882.353 kg + 150 GJ
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stoich-note">
+                        <p><i class="fas fa-info-circle"></i> <strong>Catatan:</strong> Reaksi eksotermik, perlu pendinginan untuk menggeser kesetimbangan ke produk. Tekanan tinggi diperlukan karena jumlah mol berkurang (4 mol → 2 mol). Sistem recycle penting untuk meningkatkan yield keseluruhan >98%. Massa molar: H₂=2 g/mol, N₂=28 g/mol, NH₃=17 g/mol.</p>
+                    </div>
+                </div>
+                
+                <!-- Machine Selection -->
+                <div class="machine-box">
+                    <h3><i class="fas fa-cogs"></i> PILIHAN MESIN</h3>
+                    <div class="machine-selector">
+                        <label for="machine5">Pilih Level Mesin:</label>
+                        <select id="machine5" onchange="updateMachine(5); updateAllCalculations();">
+                            <option value="basic">Basic (Murah, Konversi 15%)</option>
+                            <option value="standard" selected>Standard (Rekomendasi, Konversi 20%)</option>
+                            <option value="premium">Premium (Mahal, Konversi 25%)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="machine-details">
+                        <h4 id="machine5-name">Ammonia Synthesis Reactor Standard</h4>
+                        <div class="machine-stats">
+                            <div class="stat">
+                                <div class="stat-label">Harga</div>
+                                <div class="stat-value" id="machine5-price">Rp 72 Miliar</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Konversi/Pass</div>
+                                <div class="stat-value" id="machine5-efficiency">20%</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Yield Overall</div>
+                                <div class="stat-value" id="machine5-yield">98%</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Konsumsi Listrik</div>
+                                <div class="stat-value" id="machine5-energy">45.000 kWh/hari</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Notes -->
+                <div class="notes-box">
+                    <h3><i class="fas fa-sticky-note"></i> CATATAN PENTING</h3>
+                    <p>• Reaksi eksotermik, perlu pendinginan untuk menggeser kesetimbangan ke produk.</p>
+                    <p>• Tekanan tinggi diperlukan karena jumlah mol berkurang (4 mol → 2 mol).</p>
+                    <p>• Sistem recycle penting untuk meningkatkan yield keseluruhan >98%.</p>
+                    <p>• Efisiensi mesin mempengaruhi konversi per pass: konversi rendah = lebih besar recycle stream = lebih banyak energi kompresi.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW SECTION: Machine Summary -->
+        <section class="machine-summary-section" id="machine-summary">
+            <div class="section-header">
+                <h2><i class="fas fa-tasks"></i> RINGKASAN MESIN & EFISIENSI</h2>
+                <p>Ringkasan semua pilihan mesin dalam satu tampilan. Ubah mesin di sini atau di setiap proses.</p>
+            </div>
+            
+            <div class="summary-controls">
+                <button class="btn btn-basic" onclick="setAllMachines('basic')">
+                    <i class="fas fa-dollar-sign"></i> Set Semua Basic (Murah)
+                </button>
+                <button class="btn btn-standard" onclick="setAllMachines('standard')">
+                    <i class="fas fa-star"></i> Set Semua Standard (Rekomendasi)
+                </button>
+                <button class="btn btn-premium" onclick="setAllMachines('premium')">
+                    <i class="fas fa-crown"></i> Set Semua Premium (Optimal)
+                </button>
+            </div>
+            
+            <div class="machine-summary-grid" id="machine-summary-grid">
+                <!-- Akan diisi oleh JavaScript -->
+            </div>
+            
+            <div class="summary-totals">
+                <div class="total-box">
+                    <h4><i class="fas fa-money-bill-wave"></i> TOTAL BIAYA MESIN</h4>
+                    <p class="total-value" id="total-machine-cost">Rp 345,8 Miliar</p>
+                    <p class="total-note">Biaya pembelian semua mesin utama</p>
+                </div>
+                
+                <div class="total-box">
+                    <h4><i class="fas fa-chart-line"></i> EFISIENSI RATA-RATA</h4>
+                    <p class="total-value" id="average-efficiency">85.2%</p>
+                    <p class="total-note">Mempengaruhi kebutuhan bahan baku</p>
+                </div>
+                
+                <div class="total-box">
+                    <h4><i class="fas fa-percentage"></i> FAKTOR KOREKSI</h4>
+                    <p class="total-value" id="correction-factor">1.176x</p>
+                    <p class="total-note">Pengali kebutuhan bahan baku teoritis</p>
+                </div>
+            </div>
+            
+            <div class="efficiency-impact">
+                <h3><i class="fas fa-lightbulb"></i> DAMPAK EFISIENSI TERHADAP BAHAN BAKU</h3>
+                <p>Semakin rendah efisiensi mesin, semakin banyak bahan baku yang dibutuhkan untuk mencapai produksi target:</p>
+                
+                <div class="impact-chart">
+                    <div class="chart-bar">
+                        <div class="chart-label">Efisiensi 70%</div>
+                        <div class="chart-bar-inner" style="width: 100%; background: #ef4444;">
+                            <span>+42.9% bahan baku</span>
+                        </div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="chart-label">Efisiensi 85% (Rata-rata)</div>
+                        <div class="chart-bar-inner" style="width: 85%; background: #f59e0b;">
+                            <span>+17.6% bahan baku</span>
+                        </div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="chart-label">Efisiensi 95%</div>
+                        <div class="chart-bar-inner" style="width: 60%; background: #10b981;">
+                            <span>+5.3% bahan baku</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="impact-note"><strong>Rumus:</strong> Kebutuhan Aktual = Kebutuhan Teoritis × (100 / Efisiensi%)</p>
+            </div>
+        </section>
+
+        <!-- NEW SECTION: Raw Material Calculation -->
+        <section class="raw-material-section" id="raw-material">
+            <div class="section-header">
+                <h2><i class="fas fa-calculator"></i> PERHITUNGAN BAHAN BAKU</h2>
+                <p>Kebutuhan bahan baku aktual berdasarkan efisiensi mesin yang dipilih. Update otomatis.</p>
+            </div>
+            
+            <div class="calculation-info">
+                <div class="info-box">
+                    <i class="fas fa-info-circle"></i>
+                    <div class="info-content">
+                        <p><strong>Efisiensi saat ini:</strong> <span id="current-efficiency-display">85.2%</span></p>
+                        <p><strong>Faktor koreksi:</strong> <span id="current-correction-display">1.176x</span></p>
+                        <p><strong>Artinya:</strong> Butuh <span id="current-extra-percent">17.6%</span> lebih banyak bahan baku dari teoritis</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="raw-material-table-container">
+                <h3><i class="fas fa-table"></i> KEBUTUHAN BAHAN BAKU HARIAN (untuk 1.000 ton NH₃)</h3>
+                
+                <div class="table-controls">
+                    <div class="table-filter">
+                        <label for="material-filter">Filter Kategori:</label>
+                        <select id="material-filter" onchange="filterMaterialTable()">
+                            <option value="all">Semua Bahan Baku</option>
+                            <option value="gas">Gas Alam & Udara</option>
+                            <option value="chemical">Bahan Kimia</option>
+                            <option value="utility">Utilitas (Listrik, Air)</option>
+                            <option value="catalyst">Katalis</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="table-scroll">
+                    <table class="raw-material-table">
+                        <thead>
+                            <tr>
+                                <th>Bahan Baku</th>
+                                <th>Kategori</th>
+                                <th>Kebutuhan Teoritis</th>
+                                <th>Faktor Koreksi</th>
+                                <th>Kebutuhan Aktual</th>
+                                <th>Harga Satuan (IDR)</th>
+                                <th>Biaya Harian (IDR)</th>
+                                <th>Biaya Tahunan (IDR)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="raw-material-body">
+                            <!-- Akan diisi oleh JavaScript -->
+                        </tbody>
+                        <tfoot>
+                            <tr class="subtotal">
+                                <td colspan="6"><strong>SUBTOTAL per Kategori</strong></td>
+                                <td id="subtotal-daily">Rp 0</td>
+                                <td id="subtotal-yearly">Rp 0</td>
+                            </tr>
+                            <tr class="total-row">
+                                <td colspan="6"><strong>TOTAL BIAYA BAHAN BAKU HARIAN</strong></td>
+                                <td colspan="2"><strong id="daily-total-cost">Rp 3.217.450.000</strong></td>
+                            </tr>
+                            <tr class="total-row">
+                                <td colspan="6"><strong>TOTAL BIAYA BAHAN BAKU TAHUNAN (330 hari)</strong></td>
+                                <td colspan="2"><strong id="yearly-total-cost">Rp 1.061.758.500.000</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="breakdown-section">
+                <h3><i class="fas fa-chart-pie"></i> BREAKDOWN BIAYA BAHAN BAKU</h3>
+                
+                <div class="breakdown-charts">
+                    <div class="breakdown-chart-container">
+                        <h4>Distribusi Biaya per Kategori</h4>
+                        <div class="pie-chart" id="category-pie-chart">
+                            <!-- Pie chart akan diisi oleh JavaScript -->
+                            <div class="pie-chart-visual">
+                                <div class="pie-segment" style="--percentage: 72; --color: #3b82f6;"></div>
+                                <div class="pie-segment" style="--percentage: 18; --color: #10b981;"></div>
+                                <div class="pie-segment" style="--percentage: 7; --color: #f59e0b;"></div>
+                                <div class="pie-segment" style="--percentage: 3; --color: #8b5cf6;"></div>
+                                <div class="pie-center"></div>
+                            </div>
+                            <div class="pie-legend">
+                                <div class="legend-item">
+                                    <span class="legend-color" style="background: #3b82f6;"></span>
+                                    <span class="legend-label">Gas Alam (72%)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color" style="background: #10b981;"></span>
+                                    <span class="legend-label">Utilitas (18%)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color" style="background: #f59e0b;"></span>
+                                    <span class="legend-label">Kimia & Katalis (7%)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color" style="background: #8b5cf6;"></span>
+                                    <span class="legend-label">Lainnya (3%)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="breakdown-details">
+                        <h4>Detail per Komponen</h4>
+                        <div class="detail-list" id="material-detail-list">
+                            <!-- Akan diisi oleh JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sensitivity-analysis">
+                <h3><i class="fas fa-chart-line"></i> ANALISIS SENSITIVITAS HARGA BAHAN BAKU</h3>
+                <p>Dampak fluktuasi harga bahan baku terhadap biaya produksi:</p>
+                
+                <div class="sensitivity-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Skenario Harga</th>
+                                <th>Gas Alam (+/- 20%)</th>
+                                <th>Listrik (+/- 15%)</th>
+                                <th>Kimia (+/- 10%)</th>
+                                <th>Total Biaya/Hari</th>
+                                <th>Dampak Profitabilitas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Harga Minimum</td>
+                                <td>-20%</td>
+                                <td>-15%</td>
+                                <td>-10%</td>
+                                <td>Rp 2,57 M</td>
+                                <td>Profit +24%</td>
+                            </tr>
+                            <tr class="highlight-row">
+                                <td>Harga Rata-rata</td>
+                                <td>0%</td>
+                                <td>0%</td>
+                                <td>0%</td>
+                                <td>Rp 3,22 M</td>
+                                <td>Profit Baseline</td>
+                            </tr>
+                            <tr>
+                                <td>Harga Maksimum</td>
+                                <td>+20%</td>
+                                <td>+15%</td>
+                                <td>+10%</td>
+                                <td>Rp 3,86 M</td>
+                                <td>Profit -20%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="material-note">
+                <p><i class="fas fa-exclamation-triangle"></i> <strong>Catatan:</strong> Perhitungan berdasarkan harga pasar Indonesia 2024. Harga dapat berfluktuasi berdasarkan lokasi, kuantitas, dan kondisi pasar. Data harga diperoleh dari sumber terpercaya termasuk Kementerian ESDM, PLN, dan supplier kimia industri.</p>
+            </div>
+        </section>
+
+        <!-- Economic Analysis -->
+        <section class="economics-section" id="economics">
+            <h2><i class="fas fa-chart-line"></i> ANALISIS EKONOMI</h2>
+            
+            <div class="economics-intro">
+                <p>Analisis ekonomi dengan nilai yang <strong>update otomatis</strong> berdasarkan pilihan mesin dan perhitungan bahan baku.</p>
+            </div>
+            
+            <!-- Main Equipment Cost Table -->
+            <div class="cost-table">
+                <h3><i class="fas fa-tools"></i> BIAYA PERALATAN UTAMA (E)</h3>
+                <table id="equipment-table">
+                    <!-- Akan diisi oleh JavaScript -->
+                </table>
+            </div>
+            
+            <!-- Investment Summary -->
+            <div class="investment-summary">
+                <h3><i class="fas fa-calculator"></i> TOTAL INVESTASI</h3>
+                <div class="investment-grid">
+                    <div class="investment-item">
+                        <h4>Fixed Capital Investment (FCI)</h4>
+                        <p class="investment-value" id="fci-value">Rp 1.622.740.000.000</p>
+                        <p class="investment-formula">FCI = DC + IC</p>
+                    </div>
+                    <div class="investment-item">
+                        <h4>Working Capital (WC)</h4>
+                        <p class="investment-value" id="wc-value">Rp 243.411.000.000</p>
+                        <p class="investment-formula">WC = 15% dari TCI</p>
+                    </div>
+                    <div class="investment-item total">
+                        <h4>Total Capital Investment (TCI)</h4>
+                        <p class="investment-value" id="tci-value">Rp 1.866.151.000.000</p>
+                        <p class="investment-formula">TCI = FCI + WC</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profitability Analysis -->
+            <div class="profitability">
+                <h3><i class="fas fa-chart-bar"></i> ANALISIS PROFITABILITAS</h3>
+                <div class="profit-grid">
+                    <div class="profit-item">
+                        <h4>Pendapatan Tahunan</h4>
+                        <p class="profit-value" id="annual-revenue">Rp 1.848.000.000.000</p>
+                        <p class="profit-detail">330.000 ton × Rp 5.600.000/ton</p>
+                    </div>
+                    <div class="profit-item">
+                        <h4>Biaya Produksi Tahunan</h4>
+                        <p class="profit-value" id="annual-production-cost">Rp 1.408.000.000.000</p>
+                        <p class="profit-detail">Termasuk bahan baku & operasional</p>
+                    </div>
+                    <div class="profit-item">
+                        <h4>Laba Kotor/Tahun</h4>
+                        <p class="profit-value" id="annual-gross-profit">Rp 440.000.000.000</p>
+                        <p class="profit-detail">Sebelum pajak</p>
+                    </div>
+                    <div class="profit-item">
+                        <h4>Payback Period (PBP)</h4>
+                        <p class="profit-value" id="payback-period">3,48 Tahun</p>
+                        <p class="profit-detail">FCI / (Net Profit + Depreciation)</p>
+                    </div>
+                    <div class="profit-item">
+                        <h4>Break Even Point (BEP)</h4>
+                        <p class="profit-value" id="bep-value">44,3% Kapasitas</p>
+                        <p class="profit-detail">146.295 ton/tahun</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Conclusion -->
+            <div class="conclusion-box">
+                <h3><i class="fas fa-clipboard-check"></i> KESIMPULAN</h3>
+                <p>Berdasarkan simulasi interaktif ini, pabrik amonia dengan kapasitas 1.000 ton per hari membutuhkan total investasi sebesar <strong>Rp 1,866 triliun</strong> dengan payback period <strong>3,48 tahun</strong>. Pabrik akan mencapai break even point pada <strong>44,3% kapasitas produksi</strong> (146.295 ton/tahun), menunjukkan ketahanan yang baik terhadap fluktuasi pasar. Pemilihan mesin dengan efisiensi optimal sangat penting karena mempengaruhi langsung kebutuhan bahan baku dan biaya produksi. Dengan asumsi harga jual amonia Rp 5,6 juta per ton, pabrik diperkirakan menghasilkan laba bersih tahunan sebesar <strong>Rp 330 miliar</strong> setelah pajak, menjadikannya investasi yang layak secara ekonomi dengan risiko moderat.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Data Sources Footer -->
+    <footer class="data-sources-footer">
+        <div class="container">
+            <h3><i class="fas fa-database"></i> SUMBER DATA & REFERENSI</h3>
+            
+            <div class="sources-grid">
+                <div class="source-category">
+                    <h4><i class="fas fa-gas-pump"></i> Harga Bahan Baku (Indonesia 2024)</h4>
+                    <ul>
+                        <li><strong>Gas Alam:</strong> Rp 96.000/MMBTU - Kementerian ESDM RI (Harga Gas Industri 2024)</li>
+                        <li><strong>Zinc Oxide (ZnO):</strong> Rp 85.000-120.000/kg - PT. Indo Acidatama (Supplier Kimia)</li>
+                        <li><strong>Listrik Industri:</strong> Rp 1.444-1.650/kWh - PLN Tarif Industri 2024</li>
+                        <li><strong>Air Demineralisasi:</strong> Rp 5.000-10.000/m³ - PDAM & Water Treatment Industri</li>
+                        <li><strong>Katalis Nikel:</strong> Rp 1.100.000-1.400.000/kg - PT. Antam & Import</li>
+                        <li><strong>Katalis Besi:</strong> Rp 750.000-900.000/kg - Supplier Katalis Industri</li>
+                        <li><strong>Monoethanolamine (MEA):</strong> Rp 25.000-35.000/kg - Supplier Kimia</li>
+                    </ul>
+                </div>
+                
+                <div class="source-category">
+                    <h4><i class="fas fa-industry"></i> Data Teknis Proses</h4>
+                    <ul>
+                        <li><strong>Proses Haber-Bosch:</strong> Ullmann's Encyclopedia of Industrial Chemistry</li>
+                        <li><strong>Steam Reforming:</strong> Twigg, M. V. (1996) Catalyst Handbook</li>
+                        <li><strong>Stoikiometri & Yield:</strong> Perhitungan berdasarkan massa molar dan konversi industri</li>
+                        <li><strong>Konsumsi Energi:</strong> IEA Ammonia Technology Roadmap (2021)</li>
+                        <li><strong>Spesifikasi Mesin:</strong> Katalog vendor industri (estimasi harga)</li>
+                    </ul>
+                </div>
+                
+                <div class="source-category">
+                    <h4><i class="fas fa-chart-line"></i> Data Ekonomi & Asumsi</h4>
+                    <ul>
+                        <li><strong>Biaya Konstruksi:</strong> Indonesian Chemical Engineering Cost Index (2024)</li>
+                        <li><strong>Faktor Lang:</strong> Peters, Timmerhaus (Plant Design and Economics)</li>
+                        <li><strong>Harga Jual Amonia:</strong> ICIS Pricing Report Q1 2024 (Rp 5,6 juta/ton)</li>
+                        <li><strong>Pajak & Regulasi:</strong> Peraturan Pemerintah RI No. 52/2011 (Pajak 25%)</li>
+                        <li><strong>Nilai Tukar:</strong> Asumsi 1 USD = Rp 16.000 (stabil)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="disclaimer">
+                <h4><i class="fas fa-exclamation-triangle"></i> DISCLAIMER</h4>
+                <p>Website ini merupakan <strong>simulasi akademis</strong> untuk proyek kelas 12. Semua perhitungan merupakan estimasi berdasarkan data industri yang tersedia publik. Angka aktual dapat bervariasi tergantung lokasi spesifik, skala proyek, negosiasi kontrak, dan fluktuasi pasar. Data diperbarui terakhir: Juni 2024.</p>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-info">
+                    <p><i class="fas fa-graduation-cap"></i> <strong>Mata Pelajaran:</strong> Kimia Industri - Plant Design Project</p>
+                    <p><i class="fas fa-users"></i> <strong>Tim Proyek:</strong> Kelompok Amonia - Kelas 12</p>
+                    <p><i class="fas fa-calendar"></i> <strong>Tahun Ajaran:</strong> 2023/2024</p>
+                </div>
+                
+                <div class="version-info">
+                    <p><i class="fas fa-code-branch"></i> <strong>Versi:</strong> 2.1 (Fixed with Complete Calculations)</p>
+                    <p><i class="fas fa-sync-alt"></i> <strong>Update:</strong> Real-time calculations based on machine selection</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2024 Rancangan Pabrik Amonia 1000 MTPD - Proyek Kelas 12 | All calculations are simulated for educational purposes</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
