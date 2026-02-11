@@ -5,7 +5,7 @@ const machinesData = {
         standard: { name: "Desulfurizer Standard", price: 3800000000, efficiency: 92, yield: 99, code: "R-101S", energy: 4500 },
         premium: { name: "Desulfurizer Premium", price: 5200000000, efficiency: 98, yield: 99.5, code: "R-101P", energy: 4000 }
     },
-    machine2: { // Steam Reforming (AMONIA)
+    machine2: { // Steam Reforming
         basic: { name: "Reformer Furnace Basic", price: 115000000000, efficiency: 80, yield: 88, code: "F-101B", energy: 35000 },
         standard: { name: "Reformer Furnace Standard", price: 136000000000, efficiency: 88, yield: 92, code: "F-101S", energy: 30000 },
         premium: { name: "Reformer Furnace Premium", price: 165000000000, efficiency: 95, yield: 96, code: "F-101P", energy: 25000 }
@@ -27,20 +27,14 @@ const machinesData = {
     }
 };
 
-// Data bahan baku (teoritis)
+// ✅ DATA BAHAN BAKU – HANYA YANG DIBELI (UTILITAS DIHAPUS)
 const rawMaterialData = [
     { id: "natural_gas", name: "Gas Alam", category: "gas", unit: "MMBTU", theoreticalNeed: 30000, unitPrice: 96000, source: "ESDM 2024" },
-    { id: "air_nitrogen", name: "Udara (untuk N₂)", category: "gas", unit: "kg", theoreticalNeed: 823529, unitPrice: 100, source: "Kompresi" },
     { id: "zno", name: "Zinc Oxide (ZnO)", category: "chemical", unit: "kg", theoreticalNeed: 147.4, unitPrice: 85000, source: "Supplier" },
-    { id: "process_water", name: "Air Demineralisasi", category: "utility", unit: "m³", theoreticalNeed: 1085, unitPrice: 5000, source: "PDAM" },
-    { id: "electricity", name: "Listrik Industri", category: "utility", unit: "kWh", theoreticalNeed: 1000000, unitPrice: 1500, source: "PLN" },
     { id: "catalyst_nickel", name: "Katalis Nikel", category: "catalyst", unit: "kg", theoreticalNeed: 0.05, unitPrice: 1200000, source: "Antam" },
     { id: "catalyst_iron", name: "Katalis Besi", category: "catalyst", unit: "kg", theoreticalNeed: 0.03, unitPrice: 800000, source: "Supplier" },
     { id: "catalyst_shift", name: "Katalis Shift", category: "catalyst", unit: "kg", theoreticalNeed: 0.02, unitPrice: 600000, source: "Supplier" },
-    { id: "mea", name: "Monoethanolamine (MEA)", category: "chemical", unit: "kg", theoreticalNeed: 50, unitPrice: 30000, source: "Kimia" },
-    { id: "cooling_water", name: "Air Pendingin", category: "utility", unit: "m³", theoreticalNeed: 5000, unitPrice: 2000, source: "PDAM" },
-    { id: "boiler_feed", name: "Air Boiler", category: "utility", unit: "m³", theoreticalNeed: 800, unitPrice: 8000, source: "WTP" },
-    { id: "instrument_air", name: "Udara Instrument", category: "utility", unit: "Nm³", theoreticalNeed: 10000, unitPrice: 500, source: "Kompresor" }
+    { id: "mea", name: "Monoethanolamine (MEA)", category: "chemical", unit: "kg", theoreticalNeed: 50, unitPrice: 30000, source: "Kimia" }
 ];
 
 // Data peralatan utama (E)
@@ -57,6 +51,11 @@ const equipmentData = [
     { code: "TK-101", name: "Storage Tanks", qty: 4, unitPrice: 8000000000 }
 ];
 
+// ===== KONSTANTA EKONOMI =====
+const SELLING_PRICE = 6500000;       // Rp 6.500.000/ton
+const UTILITIES_COST = 150000000000; // Rp 150 M/tahun
+const PACKAGING_COST = 16000000000;  // Rp 16 M/tahun
+
 // ===== UTILITY FUNCTIONS =====
 function formatRupiah(amount) {
     if (amount >= 1e12) return `Rp ${(amount / 1e12).toFixed(2)} T`;
@@ -69,8 +68,6 @@ function formatNumber(num, decimals = 0) {
 }
 
 // ===== PERHITUNGAN UTAMA =====
-
-/** Hitung total biaya mesin (E) */
 function calculateTotalMachineCost() {
     let total = 0;
     for (let i = 1; i <= 5; i++) {
@@ -80,7 +77,6 @@ function calculateTotalMachineCost() {
     return total;
 }
 
-/** Hitung efisiensi rata-rata */
 function calculateAverageEfficiency() {
     let total = 0, count = 0;
     for (let i = 1; i <= 5; i++) {
@@ -90,9 +86,8 @@ function calculateAverageEfficiency() {
     return count > 0 ? total / count : 85.2;
 }
 
-/** Hitung Total Capital Investment (TCI) - menggunakan persentase dari PDF contoh metanol */
 function calculateInvestment(E) {
-    // Direct Cost - Upper limit untuk pabrik tekanan tinggi
+    // Direct Cost - Upper limit pabrik tekanan tinggi
     const dc = {
         installation: 0.40,
         instrumentation: 0.25,
@@ -103,9 +98,9 @@ function calculateInvestment(E) {
         utilities: 0.40
     };
     const sumDC = Object.values(dc).reduce((a,b) => a + b, 0);
-    const DC = E * (1 + sumDC); // DC = E + semua komponen %E
+    const DC = E * (1 + sumDC);
     
-    // Indirect Cost - Mengikuti contoh PDF (total 60% dari DC)
+    // Indirect Cost - Ikuti PDF (60% dari DC)
     const ic = {
         engineering: 0.15,
         construction: 0.15,
@@ -113,19 +108,17 @@ function calculateInvestment(E) {
         contractor: 0.10,
         contingency: 0.15
     };
-    const sumIC = Object.values(ic).reduce((a,b) => a + b, 0); // = 0.60
+    const sumIC = Object.values(ic).reduce((a,b) => a + b, 0);
     const IC = DC * sumIC;
     
     const FCI = DC + IC;
-    const TCI = FCI / 0.85; // WC = 15% dari TCI
+    const TCI = FCI / 0.85; // WC = 15% TCI
     const WC = TCI - FCI;
     
     return { DC, IC, FCI, WC, TCI };
 }
 
 // ===== UPDATE FUNCTIONS =====
-
-/** Update tampilan mesin di proses */
 function updateMachine(processNumber) {
     const select = document.getElementById(`machine${processNumber}`);
     if (!select) return;
@@ -157,7 +150,6 @@ function updateMachine(processNumber) {
     }
 }
 
-/** Update ringkasan mesin */
 function updateMachineSummary() {
     const summaryGrid = document.getElementById('machine-summary-grid');
     if (!summaryGrid) return;
@@ -200,7 +192,6 @@ function updateMachineSummary() {
     document.getElementById('header-efficiency').textContent = avgEff.toFixed(1);
 }
 
-/** Set mesin dari dropdown ringkasan */
 function setMachine(processNumber, value) {
     const select = document.getElementById(`machine${processNumber}`);
     if (select) { select.value = value; updateMachine(processNumber); }
@@ -213,11 +204,10 @@ function setAllMachines(level) {
     updateAllCalculations();
 }
 
-// Variabel global untuk menyimpan biaya bahan baku terkini
-let lastDailyCost = 3217450000;
+// Variabel global biaya bahan baku
+let lastDailyCost = 2894125000; // theoretical standard
 let lastYearlyCost = 0;
 
-/** Update perhitungan bahan baku */
 function updateRawMaterialCalculation() {
     const avgEff = calculateAverageEfficiency();
     const correctionFactor = 100 / avgEff;
@@ -227,8 +217,8 @@ function updateRawMaterialCalculation() {
     document.getElementById('current-extra-percent').textContent = `${((correctionFactor-1)*100).toFixed(1)}%`;
     
     let totalDailyCost = 0;
-    const categoryTotals = { gas:0, chemical:0, utility:0, catalyst:0 };
-    const categoryNames = { gas:'Gas & Udara', chemical:'Bahan Kimia', utility:'Utilitas', catalyst:'Katalis' };
+    const categoryTotals = { gas:0, chemical:0, catalyst:0 };
+    const categoryNames = { gas:'Gas Alam', chemical:'Bahan Kimia', catalyst:'Katalis' };
     
     let tableBody = '';
     rawMaterialData.forEach(m => {
@@ -258,14 +248,12 @@ function updateRawMaterialCalculation() {
     document.getElementById('header-raw-cost').textContent = formatRupiah(totalDailyCost).replace('Rp ', '');
     
     updateBreakdownDetails(categoryTotals, totalDailyCost);
-    updateEconomicAnalysis(); // panggil setelah bahan baku dihitung
+    updateEconomicAnalysis();
 }
 
-/** Update pie chart & detail bahan baku */
 function updateBreakdownDetails(categoryTotals, totalDailyCost) {
     const categories = [
-        { id:'gas', name:'Gas & Udara', color:'#3b82f6' },
-        { id:'utility', name:'Utilitas', color:'#10b981' },
+        { id:'gas', name:'Gas Alam', color:'#3b82f6' },
         { id:'chemical', name:'Bahan Kimia', color:'#f59e0b' },
         { id:'catalyst', name:'Katalis', color:'#8b5cf6' }
     ];
@@ -297,20 +285,13 @@ function updateBreakdownDetails(categoryTotals, totalDailyCost) {
     }
 }
 
-/** Update analisis ekonomi - VERSI STABIL (positif) */
 function updateEconomicAnalysis() {
     const E = calculateTotalMachineCost();
     const inv = calculateInvestment(E);
     
-    // Biaya bahan baku tahunan (dari perhitungan terbaru)
     const yearlyRawMaterial = lastDailyCost * 330;
+    const VC = yearlyRawMaterial + UTILITIES_COST + PACKAGING_COST;
     
-    // Biaya utilitas (Rp 80 M/tahun - sama dengan contoh PDF)
-    const utilitiesCost = 80000000000;
-    const packagingCost = 16000000000;
-    const VC = yearlyRawMaterial + utilitiesCost + packagingCost;
-    
-    // Fixed Cost
     const maintenance = 0.05 * inv.FCI;
     const labor = 32000000000;
     const lab = 0.1 * labor;
@@ -319,23 +300,17 @@ function updateEconomicAnalysis() {
     const depreciation = 0.10 * E;
     const FC = maintenance + labor + lab + overhead + insurance + depreciation;
     
-    // Revenue & Profit
-    const annualRevenue = 330000 * 5600000;
+    const annualRevenue = 330000 * SELLING_PRICE;
     const annualProductionCost = VC + FC;
     const annualGrossProfit = annualRevenue - annualProductionCost;
     const tax = annualGrossProfit * 0.25;
     const netProfit = annualGrossProfit - tax;
     
-    // Payback Period
     const paybackPeriod = inv.FCI / (netProfit + depreciation);
-    
-    // Break Even Point
-    const sellingPrice = 5600000;
     const variableCostPerTon = VC / 330000;
-    const BEP_ton = FC / (sellingPrice - variableCostPerTon);
+    const BEP_ton = FC / (SELLING_PRICE - variableCostPerTon);
     const BEP_percent = (BEP_ton / 330000) * 100;
     
-    // Update DOM
     document.getElementById('fci-value').textContent = formatRupiah(inv.FCI);
     document.getElementById('wc-value').textContent = formatRupiah(inv.WC);
     document.getElementById('tci-value').textContent = formatRupiah(inv.TCI);
@@ -346,9 +321,7 @@ function updateEconomicAnalysis() {
     document.getElementById('annual-revenue').textContent = formatRupiah(annualRevenue);
 }
 
-/** Update tabel peralatan */
 function updateEquipmentTable() {
-    const E = calculateTotalMachineCost();
     let rows = '';
     let total = 0;
     equipmentData.forEach(eq => {
@@ -361,14 +334,13 @@ function updateEquipmentTable() {
     if (tbl) tbl.innerHTML = rows;
 }
 
-/** Update semua perhitungan */
 function updateAllCalculations() {
     updateMachineSummary();
-    updateRawMaterialCalculation(); // sudah panggil updateEconomicAnalysis()
+    updateRawMaterialCalculation();
     updateEquipmentTable();
 }
 
-// ===== SCROLL SPY - INTERSECTION OBSERVER (FIX UNTUK SEMUA SECTION) =====
+// ===== SCROLL SPY (INTERSECTION OBSERVER) =====
 function initScrollSpy() {
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section[id]');
@@ -388,13 +360,12 @@ function initScrollSpy() {
         });
     }, {
         root: null,
-        rootMargin: '-80px 0px -100px 0px', // offset untuk header, dan sedikit dari bawah
-        threshold: 0.1 // 10% section terlihat
+        rootMargin: '-80px 0px -100px 0px',
+        threshold: 0.1
     });
     
     sections.forEach(section => observer.observe(section));
     
-    // Klik smooth scroll
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -410,7 +381,6 @@ function initScrollSpy() {
         });
     });
     
-    // Set active awal (section pertama)
     setTimeout(() => {
         if (sections.length > 0) {
             const firstId = sections[0].getAttribute('id');
@@ -434,7 +404,7 @@ function scrollToTop() {
 
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Amonia Plant - Final Fixed Version');
+    console.log('Amonia Plant - Final Fix (Ekonomi Positif)');
     
     // Set default semua mesin ke standard
     for (let i = 1; i <= 5; i++) {
@@ -449,7 +419,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollSpy();
     initBackToTop();
     
-    // Animasi scroll muncul
+    // Animasi scroll
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; } });
@@ -461,7 +431,7 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(s);
     });
     
-    // Filter tabel bahan baku
+    // Filter tabel
     window.filterMaterialTable = function() {
         const filter = document.getElementById('material-filter').value;
         document.querySelectorAll('#raw-material-body tr').forEach(row => {
