@@ -227,26 +227,13 @@ a:hover {
     color: var(--primary-blue);
 }
 
+/* ===== NAVIGATION - PERBAIKAN SCROLLSPY ===== */
 .nav-link.active {
     background: linear-gradient(90deg, var(--secondary-blue) 0%, var(--primary-blue) 100%);
     color: white;
     box-shadow: var(--shadow-md);
-    border-radius: 25px; /* pastikan border-radius sama */
+    border-radius: 25px;
 }
-
-/* Hapus atau komentari ini:
-.nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -17px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    height: 3px;
-    background: var(--secondary-blue);
-    border-radius: 2px;
-}
-*/
 
 .nav-link:hover {
     background-color: var(--gray-200);
