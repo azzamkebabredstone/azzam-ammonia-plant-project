@@ -1463,3 +1463,134 @@ main {
         font-size: 1.2rem;
     }
 }
+
+/* ===== FLOWCHART SECTION ===== */
+.flowchart-section {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 30px;
+    margin: 40px 0;
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--gray-200);
+}
+
+.flowchart-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.flow-step {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--gray-100);
+    padding: 15px 20px;
+    border-radius: var(--radius-sm);
+    border-left: 4px solid var(--secondary-blue);
+    flex: 1 1 200px;
+}
+
+.flow-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.flow-content h4 {
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.flow-content p {
+    margin-bottom: 3px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-900);
+}
+
+.flow-condition {
+    font-size: 0.75rem;
+    color: var(--gray-700);
+    background: var(--light-blue);
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.flow-arrow {
+    font-size: 1.8rem;
+    color: var(--secondary-blue);
+}
+
+@media (max-width: 992px) {
+    .flowchart-container {
+        flex-direction: column;
+    }
+    .flow-arrow {
+        transform: rotate(90deg);
+    }
+}
+
+.explanation-box {
+    background: #f8fafc;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: 30px;
+    margin: 40px 0;
+    border-left: 5px solid var(--secondary-blue);
+}
+
+.explanation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.explanation-item h4 {
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--gray-200);
+    padding-bottom: 10px;
+}
+
+.explanation-item ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.explanation-item li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.explanation-item li::before {
+    content: '•';
+    color: var(--secondary-blue);
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+}
+
+.explanation-note {
+    margin-top: 20px;
+    padding: 15px;
+    background: #dbeafe;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+}
+@media (max-width: 768px) {
+    .explanation-grid {
+        grid-template-columns: 1fr;
+    }
+}
