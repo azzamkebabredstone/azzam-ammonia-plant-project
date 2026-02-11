@@ -27,7 +27,7 @@ const machinesData = {
     }
 };
 
-// ===== DATA BAHAN BAKU & UTILITAS (LENGKAP - REALISTIS) =====
+// ===== DATA BAHAN BAKU & UTILITAS (VERSI KOREKSI - REALISTIS) =====
 const rawMaterialData = [
     // --- BAHAN BAKU UTAMA ---
     { id: "natural_gas", name: "Gas Alam (Feed + Fuel)", category: "gas", unit: "MMBTU", 
@@ -45,18 +45,18 @@ const rawMaterialData = [
     { id: "catalyst_shift", name: "Katalis Shift (Fe-Cr)", category: "catalyst", unit: "kg", 
       theoreticalNeed: 0.02, unitPrice: 600000, source: "Supplier" },
     
-    // ===== UTILITAS - DIKEMBALIKAN! =====
-    // --- LISTRIK (Berdasarkan referensi ITERA 2025: 123 MW ≈ 2.95 JUTA kWh/hari) ---
+    // ===== UTILITAS - DIKOREKSI KE ANGKA REALISTIS =====
+    // --- LISTRIK (Berdasarkan data vendor: 36 MW = 864.000 kWh/hari) ---
     { id: "electricity", name: "Listrik Industri", category: "utility", unit: "kWh", 
-      theoreticalNeed: 2950000, unitPrice: 1500, source: "PLN (skala 1000 MTPD)" },
+      theoreticalNeed: 864000, unitPrice: 1500, source: "Vendor Data (36 MW)" },
     
-    // --- AIR (Berdasarkan UII 2022 & Unmul 2015) ---
+    // --- AIR (Berdasarkan referensi pabrik Kujang & UII) ---
     { id: "process_water", name: "Air Demineralisasi (Boiler)", category: "utility", unit: "m³", 
       theoreticalNeed: 2800, unitPrice: 8000, source: "Water Treatment" },
     { id: "cooling_water", name: "Air Pendingin (Make-up)", category: "utility", unit: "m³", 
-      theoreticalNeed: 32000, unitPrice: 2000, source: "Cooling Tower" },
+      theoreticalNeed: 12000, unitPrice: 2000, source: "Cooling Tower" }, // Diturunkan!
     { id: "boiler_feed", name: "Air Boiler (Make-up)", category: "utility", unit: "m³", 
-      theoreticalNeed: 1200, unitPrice: 5000, source: "Demin Plant" },
+      theoreticalNeed: 800, unitPrice: 5000, source: "Demin Plant" },
     
     // --- UDARA INSTRUMEN ---
     { id: "instrument_air", name: "Udara Instrument", category: "utility", unit: "Nm³", 
