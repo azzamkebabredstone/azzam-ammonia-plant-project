@@ -5,10 +5,10 @@ const machinesData = {
         standard: { name: "Desulfurizer Standard", price: 3800000000, efficiency: 92, yield: 99, code: "R-101S", energy: 4500 },
         premium: { name: "Desulfurizer Premium", price: 5200000000, efficiency: 98, yield: 99.5, code: "R-101P", energy: 4000 }
     },
-    machine2: { // Steam Reforming (AMONIA, lebih mahal dari methanol)
-        basic: { name: "Reformer Furnace Basic", price: 138000000000, efficiency: 80, yield: 88, code: "F-101B", energy: 35000 },
-        standard: { name: "Reformer Furnace Standard", price: 163000000000, efficiency: 88, yield: 92, code: "F-101S", energy: 30000 },
-        premium: { name: "Reformer Furnace Premium", price: 198000000000, efficiency: 95, yield: 96, code: "F-101P", energy: 25000 }
+    machine2: { // Steam Reforming (AMONIA)
+        basic: { name: "Reformer Furnace Basic", price: 115000000000, efficiency: 80, yield: 88, code: "F-101B", energy: 35000 },
+        standard: { name: "Reformer Furnace Standard", price: 136000000000, efficiency: 88, yield: 92, code: "F-101S", energy: 30000 },
+        premium: { name: "Reformer Furnace Premium", price: 165000000000, efficiency: 95, yield: 96, code: "F-101P", energy: 25000 }
     },
     machine3: { // Shift Conversion
         basic: { name: "Shift Reactor Basic", price: 40000000000, efficiency: 85, yield: 92, code: "R-201B", energy: 15000 },
@@ -27,7 +27,7 @@ const machinesData = {
     }
 };
 
-// Data bahan baku (SAMA, tidak berubah)
+// Data bahan baku (teoritis)
 const rawMaterialData = [
     { id: "natural_gas", name: "Gas Alam", category: "gas", unit: "MMBTU", theoreticalNeed: 30000, unitPrice: 96000, source: "ESDM 2024" },
     { id: "air_nitrogen", name: "Udara (untuk N₂)", category: "gas", unit: "kg", theoreticalNeed: 823529, unitPrice: 100, source: "Kompresi" },
@@ -46,7 +46,7 @@ const rawMaterialData = [
 // Data peralatan utama (E)
 const equipmentData = [
     { code: "R-101", name: "Desulfurizer Vessel", qty: 1, unitPrice: 3800000000 },
-    { code: "F-101", name: "Steam Reformer Furnace", qty: 1, unitPrice: 163000000000 },
+    { code: "F-101", name: "Steam Reformer Furnace", qty: 1, unitPrice: 136000000000 },
     { code: "C-101", name: "Syngas Compressor", qty: 1, unitPrice: 51200000000 },
     { code: "R-201", name: "Shift Reactor", qty: 1, unitPrice: 48000000000 },
     { code: "C-201", name: "CO₂ Removal Unit", qty: 1, unitPrice: 85000000000 },
@@ -70,15 +70,12 @@ function formatNumber(num, decimals = 0) {
 
 // ===== PERHITUNGAN UTAMA =====
 
-/** Hitung total biaya mesin dari semua proses */
+/** Hitung total biaya mesin (E) */
 function calculateTotalMachineCost() {
     let total = 0;
     for (let i = 1; i <= 5; i++) {
         const select = document.getElementById(`machine${i}`);
-        if (select) {
-            const machine = machinesData[`machine${i}`][select.value];
-            total += machine.price;
-        }
+        if (select) total += machinesData[`machine${i}`][select.value].price;
     }
     return total;
 }
@@ -88,17 +85,14 @@ function calculateAverageEfficiency() {
     let total = 0, count = 0;
     for (let i = 1; i <= 5; i++) {
         const select = document.getElementById(`machine${i}`);
-        if (select) {
-            total += machinesData[`machine${i}`][select.value].efficiency;
-            count++;
-        }
+        if (select) { total += machinesData[`machine${i}`][select.value].efficiency; count++; }
     }
     return count > 0 ? total / count : 85.2;
 }
 
-/** Hitung Total Capital Investment (TCI) berdasarkan E */
+/** Hitung Total Capital Investment (TCI) - menggunakan persentase dari PDF contoh metanol */
 function calculateInvestment(E) {
-    // Direct Cost - Upper Limit untuk pabrik tekanan tinggi (Ammonia)
+    // Direct Cost - Upper limit untuk pabrik tekanan tinggi
     const dc = {
         installation: 0.40,
         instrumentation: 0.25,
@@ -109,29 +103,29 @@ function calculateInvestment(E) {
         utilities: 0.40
     };
     const sumDC = Object.values(dc).reduce((a,b) => a + b, 0);
-    const DC = E * (1 + sumDC); // Termasuk E itu sendiri (100%)
+    const DC = E * (1 + sumDC); // DC = E + semua komponen %E
     
-    // Indirect Cost - Upper Limit
+    // Indirect Cost - Mengikuti contoh PDF (total 60% dari DC)
     const ic = {
-        engineering: 0.32,
-        construction: 0.40,
+        engineering: 0.15,
+        construction: 0.15,
         legal: 0.05,
-        contractor: 0.18,
-        contingency: 0.40
+        contractor: 0.10,
+        contingency: 0.15
     };
-    const sumIC = Object.values(ic).reduce((a,b) => a + b, 0);
+    const sumIC = Object.values(ic).reduce((a,b) => a + b, 0); // = 0.60
     const IC = DC * sumIC;
     
     const FCI = DC + IC;
     const TCI = FCI / 0.85; // WC = 15% dari TCI
     const WC = TCI - FCI;
     
-    return { E, DC, IC, FCI, WC, TCI };
+    return { DC, IC, FCI, WC, TCI };
 }
 
 // ===== UPDATE FUNCTIONS =====
 
-/** Update tampilan mesin di setiap proses */
+/** Update tampilan mesin di proses */
 function updateMachine(processNumber) {
     const select = document.getElementById(`machine${processNumber}`);
     if (!select) return;
@@ -144,13 +138,12 @@ function updateMachine(processNumber) {
     setText(`machine${processNumber}-efficiency`, `${machine.efficiency}%`);
     setText(`machine${processNumber}-yield`, `${machine.yield}%`);
     
-    // Kebutuhan spesifik per proses
     switch(processNumber) {
         case 1: 
             const znNeed = (147.4 * (100 / machine.efficiency)).toFixed(1);
             setText('machine1-znoneed', `${znNeed} kg/hari`); break;
         case 2:
-            const ch4Need = (470588 * (100 / machine.efficiency)).toFixed(0); // Stoikiometri dikoreksi
+            const ch4Need = (470588 * (100 / machine.efficiency)).toFixed(0);
             setText('machine2-ch4need', `${formatNumber(ch4Need)} kg/hari`); break;
         case 3:
             const energy3 = (15000 * (100 / machine.efficiency)).toFixed(0);
@@ -164,7 +157,7 @@ function updateMachine(processNumber) {
     }
 }
 
-/** Update ringkasan mesin & totalkan biaya */
+/** Update ringkasan mesin */
 function updateMachineSummary() {
     const summaryGrid = document.getElementById('machine-summary-grid');
     if (!summaryGrid) return;
@@ -220,10 +213,11 @@ function setAllMachines(level) {
     updateAllCalculations();
 }
 
-/** Update perhitungan bahan baku + SIMPAN total biaya harian & tahunan ke variabel global */
-let lastDailyCost = 3217450000; // default
+// Variabel global untuk menyimpan biaya bahan baku terkini
+let lastDailyCost = 3217450000;
 let lastYearlyCost = 0;
 
+/** Update perhitungan bahan baku */
 function updateRawMaterialCalculation() {
     const avgEff = calculateAverageEfficiency();
     const correctionFactor = 100 / avgEff;
@@ -256,7 +250,6 @@ function updateRawMaterialCalculation() {
     });
     document.getElementById('raw-material-body').innerHTML = tableBody;
     
-    // Simpan ke global
     lastDailyCost = totalDailyCost;
     lastYearlyCost = totalDailyCost * 330;
     
@@ -264,15 +257,8 @@ function updateRawMaterialCalculation() {
     document.getElementById('yearly-total-cost').textContent = formatRupiah(lastYearlyCost);
     document.getElementById('header-raw-cost').textContent = formatRupiah(totalDailyCost).replace('Rp ', '');
     
-    // Subtotal per kategori
-    let subDaily = 0, subYearly = 0;
-    Object.keys(categoryTotals).forEach(cat => { subDaily += categoryTotals[cat]; subYearly += categoryTotals[cat] * 330; });
-    document.getElementById('subtotal-daily').innerHTML = formatRupiah(subDaily);
-    document.getElementById('subtotal-yearly').innerHTML = formatRupiah(subYearly);
-    
     updateBreakdownDetails(categoryTotals, totalDailyCost);
-    // Ekonomi dipanggil di sini dengan data yang sudah fresh
-    updateEconomicAnalysis();
+    updateEconomicAnalysis(); // panggil setelah bahan baku dihitung
 }
 
 /** Update pie chart & detail bahan baku */
@@ -311,50 +297,45 @@ function updateBreakdownDetails(categoryTotals, totalDailyCost) {
     }
 }
 
-/** Update analisis ekonomi - VERSI PERBAIKAN, tidak parsing DOM */
+/** Update analisis ekonomi - VERSI STABIL (positif) */
 function updateEconomicAnalysis() {
-    // 1. Dapatkan total biaya mesin (E)
     const E = calculateTotalMachineCost();
-    
-    // 2. Hitung investasi
     const inv = calculateInvestment(E);
     
-    // 3. Biaya bahan baku tahunan dari global variable (hasil updateRawMaterialCalculation)
+    // Biaya bahan baku tahunan (dari perhitungan terbaru)
     const yearlyRawMaterial = lastDailyCost * 330;
     
-    // 4. Biaya utilitas - DIKOREKSI ke nilai realistis (listrik saja sudah ~300M)
-    const utilitiesCost = 350000000000; // Rp 350 M / tahun
-    const packagingCost = 16000000000;   // Rp 16 M
-    
-    // 5. Variable Cost
+    // Biaya utilitas (Rp 80 M/tahun - sama dengan contoh PDF)
+    const utilitiesCost = 80000000000;
+    const packagingCost = 16000000000;
     const VC = yearlyRawMaterial + utilitiesCost + packagingCost;
     
-    // 6. Fixed Cost
+    // Fixed Cost
     const maintenance = 0.05 * inv.FCI;
     const labor = 32000000000;
     const lab = 0.1 * labor;
     const overhead = 0.5 * labor;
     const insurance = 0.02 * inv.FCI;
-    const depreciation = 0.10 * E; // 10% dari Equipment cost (bukan FCI)
+    const depreciation = 0.10 * E;
     const FC = maintenance + labor + lab + overhead + insurance + depreciation;
     
-    // 7. Revenue & Profit
+    // Revenue & Profit
     const annualRevenue = 330000 * 5600000;
     const annualProductionCost = VC + FC;
     const annualGrossProfit = annualRevenue - annualProductionCost;
     const tax = annualGrossProfit * 0.25;
     const netProfit = annualGrossProfit - tax;
     
-    // 8. Payback Period
+    // Payback Period
     const paybackPeriod = inv.FCI / (netProfit + depreciation);
     
-    // 9. BEP
+    // Break Even Point
     const sellingPrice = 5600000;
     const variableCostPerTon = VC / 330000;
     const BEP_ton = FC / (sellingPrice - variableCostPerTon);
     const BEP_percent = (BEP_ton / 330000) * 100;
     
-    // 10. Update DOM
+    // Update DOM
     document.getElementById('fci-value').textContent = formatRupiah(inv.FCI);
     document.getElementById('wc-value').textContent = formatRupiah(inv.WC);
     document.getElementById('tci-value').textContent = formatRupiah(inv.TCI);
@@ -380,24 +361,22 @@ function updateEquipmentTable() {
     if (tbl) tbl.innerHTML = rows;
 }
 
-/** Update semua perhitungan - dipanggil setiap kali mesin berubah */
+/** Update semua perhitungan */
 function updateAllCalculations() {
     updateMachineSummary();
-    updateRawMaterialCalculation(); // <-- ini sudah memanggil updateEconomicAnalysis() di dalamnya
+    updateRawMaterialCalculation(); // sudah panggil updateEconomicAnalysis()
     updateEquipmentTable();
 }
 
-// ===== SCROLL SPY - VERSI BARU (Intersection Observer) =====
+// ===== SCROLL SPY - INTERSECTION OBSERVER (FIX UNTUK SEMUA SECTION) =====
 function initScrollSpy() {
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section[id]');
     
-    // Hapus active dari semua link
     function removeActive() {
         navLinks.forEach(link => link.classList.remove('active'));
     }
     
-    // Observer untuk mendeteksi section visible
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -408,14 +387,14 @@ function initScrollSpy() {
             }
         });
     }, {
-        root: null, // viewport
-        rootMargin: '-80px 0px -50% 0px', // offset untuk fixed header
-        threshold: 0.1 // 10% dari section terlihat
+        root: null,
+        rootMargin: '-80px 0px -100px 0px', // offset untuk header, dan sedikit dari bawah
+        threshold: 0.1 // 10% section terlihat
     });
     
     sections.forEach(section => observer.observe(section));
     
-    // Handle klik smooth scroll + set active manual
+    // Klik smooth scroll
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -424,7 +403,7 @@ function initScrollSpy() {
             if (targetSection) {
                 removeActive();
                 this.classList.add('active');
-                const yOffset = -80; // offset header
+                const yOffset = -80;
                 const y = targetSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
                 window.scrollTo({ top: y, behavior: 'smooth' });
             }
@@ -455,9 +434,9 @@ function scrollToTop() {
 
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Amonia Plant Simulation v3.0 - Fixed ScrollSpy & Economics');
+    console.log('Amonia Plant - Final Fixed Version');
     
-    // Set semua mesin ke default (standard)
+    // Set default semua mesin ke standard
     for (let i = 1; i <= 5; i++) {
         const select = document.getElementById(`machine${i}`);
         if (select) {
@@ -466,14 +445,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Hitung ulang semua
     updateAllCalculations();
-    
-    // Init komponen
     initScrollSpy();
     initBackToTop();
     
-    // Observer animasi (sama seperti sebelumnya)
+    // Animasi scroll muncul
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; } });
