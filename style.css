@@ -231,8 +231,10 @@ a:hover {
     background: linear-gradient(90deg, var(--secondary-blue) 0%, var(--primary-blue) 100%);
     color: white;
     box-shadow: var(--shadow-md);
+    border-radius: 25px; /* pastikan border-radius sama */
 }
 
+/* Hapus atau komentari ini:
 .nav-link.active::after {
     content: '';
     position: absolute;
@@ -243,6 +245,13 @@ a:hover {
     height: 3px;
     background: var(--secondary-blue);
     border-radius: 2px;
+}
+*/
+
+.nav-link:hover {
+    background-color: var(--gray-200);
+    color: var(--primary-blue);
+    border-radius: 25px;
 }
 
 /* ===== MAIN CONTENT ===== */
